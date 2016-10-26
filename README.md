@@ -44,9 +44,25 @@ fred.weight = 999.2
 fred.homePlanet = "Mars"
 ```
 
+// homePlanet is a constant and the value is inmutable.
+
+
 ### Question 2
 
 Can you fix the class definition above so that it _does_ work?
+
+class Giant {
+var name: String
+var weight: Double
+var homePlanet: String
+
+init(name: String, weight: Double, homePlanet: String) {
+self.name = name
+self.weight = weight
+self.homePlanet = homePlanet
+}
+}
+
 
 ### Question 3
 
@@ -74,9 +90,13 @@ bilbo.height = 1.42
 bilbo.homePlanet = "Saturn"
 ```
 
+// bilbo is declared as a constant and in structs you can't change its propeties.
+
 ### Question 4
 
 Can you change the declaration of `bilbo` so that the above three lines of code _do_ work?
+
+var bilbo = Alien(name: "Bilbo", height: 1.67, homePlanet: "Venus")
 
 ### Question 5
 
@@ -90,6 +110,8 @@ jason.name = "Jason"
 
 What will the value of `edgar.name` be after those three lines of code are run? What will the value of `jason.name` be? Why?
 
+// Jason because are reference type and changing one property will change the other one.
+
 ### Question 6
 
 Given this bit of code that uses the `Alien` struct:
@@ -101,6 +123,8 @@ charlesFromJupiter.homePlanet = "Jupiter"
 ```
 
 What will the value of `charles.homePlanet` be after the above code run? What about the value of `charlesFromJupiter.homePlanet`? Why?
+
+//charles.homePlanets will still be Pluto and charlesFromJupiter.homePlanet will be Jupiter because structs are value type and when changing properties values one is not affected by the other one. 
 
 ### Question 7
 
@@ -123,9 +147,26 @@ struct BankAccount {
 
 Does this code work? Why or why not?
 
+//The methods will change value therefore they need include mutating in the code.
+
+
 ### Question 8
 
 Can you fix the `BankAccount` struct so it _does_ work?
+
+struct BankAccount {
+var owner: String
+var balance: Double
+
+mutating func deposit(_ amount: Double) {
+balance += amount
+}
+
+mutating func withdraw(_ amount: Double) {
+balance -= amount
+}
+}
+
 
 ### Question 9
 
@@ -138,6 +179,8 @@ joeAccount.withdraw(50.0)
 ```
 
 What will the value of `joeAccount.balance` be after the above code runs? What about the value of `joeOtherAccount.balance`? Why?
+
+//joeAccount 50.0 and joeOtherAccount 100.0 because they are value types and one change in one would not affect the other one.
 
 ### Question 10
 
@@ -168,5 +211,7 @@ library2.add(track: "Come As You Are")
 ```
 
 After this code runs, what are the contents of `library1.tracks`? What about the contents of `library2.tracks`? Why?
+
+//["Michelle", "Voodoo Child", "Come As You Are"] because they are reference types and changing one will affect the other one.
 
 <a href='https://learn.co/lessons/ClassesVsStructs' data-visibility='hidden'>View this lesson on Learn.co</a>
